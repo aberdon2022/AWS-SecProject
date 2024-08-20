@@ -35,7 +35,6 @@ We will be using the eu-west-1 (Ireland) region for this project.
 
 ### 2. Setting up the VPC (Virtual Private Cloud)
 
-- [x] Create a new VPC
 - **Screenshot:**
 
   - ![VPC Dashboard](screenshots/VPC%20dashboard.png)
@@ -47,8 +46,7 @@ We will be using the eu-west-1 (Ireland) region for this project.
     - Availability Zone: eu-west-1a
     - Route Table: Public Route Table
     - **Screenshot:**
-
-      - ![Public Subnet](screenshots/Public%20Subnet.png)
+    ![Public Subnet](screenshots/Public%20Subnet.png)
 
   - Private Subnet:
     - CIDR Block: 10.0.2.0/28
