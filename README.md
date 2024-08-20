@@ -14,7 +14,7 @@ The objective of this project is to create and configurate a Virtual Private Clo
 
 ---
 
-## Project Objectives
+## Setup Instructions
 
 ### 1. Creating the AWS account
 
