@@ -28,7 +28,6 @@ Before starting this project, ensure you have:
 ## Setup Instructions
 
 ### 1. Creating the AWS account
-
 We will be using the eu-west-1 (Ireland) region for this project.
 - **Screenshot:**
 
@@ -38,5 +37,45 @@ We will be using the eu-west-1 (Ireland) region for this project.
 
 - [x] Create a new VPC
 - **Screenshot:**
-  - ![VPC Dashboard](screenshots/VPC%20Dashboard.png)
-  - ![VPC Form](screenshots/VPC%20Creation.png)
+
+  - ![VPC Dashboard](screenshots/VPC%20dashboard.png)
+
+- [x] Creation of subnets
+In this project, we will create two subnets:
+
+  - Public Subnet:
+    - CIDR Block: 10.0.1.0/28
+    - Availability Zone: eu-west-1a
+    - Route Table: Public Route Table
+    - **Screenshot:**
+
+      - ![Public Subnet](screenshots/Public%20Subnet.png)
+
+  - Private Subnet:
+    - CIDR Block:
+    - Availability Zone: eu-west-1b
+    - Route Table: Private Route Table
+    - **Screenshot:**
+
+      - ![Private Subnet](screenshots/Private%20Subnet.png)
+
+- [x] Internet Gateway
+Next, we will create an Internet Gateway and attach it to the VPC in order to allow the VPC to connect to the Internet.
+After creating the Internet Gateway, we will attach it to the VPC.
+- **Screenshot:**
+
+  - ![Internet Gateway](screenshots/Internet%20Gateway.png)
+
+- [x] Route Tables
+We will create two route tables: one for the public subnet and another for the private subnet.
+
+  - Public Route Table:
+    - **Screenshot:**
+
+      - ![Public Route Table](screenshots/Public%20Route%20Table.png)
+
+  - Private Route Table:
+    - **Screenshot:**
+
+      - ![Private Route Table](screenshots/Private%20Route%20Table.png)
+  
