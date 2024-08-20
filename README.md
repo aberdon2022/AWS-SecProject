@@ -19,6 +19,7 @@ The objective of this project is to create and configurate a Virtual Private Clo
 ### 1. Creating the AWS account
 
 - [x] Create an AWS account
+We will be using the eu-west-1 (Ireland) region for this project.
 - **Screenshot:**
   - ![AWS Management Console](screenshots/Console%20Home.png)
 
