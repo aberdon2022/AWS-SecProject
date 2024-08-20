@@ -41,7 +41,6 @@ We will be using the eu-west-1 (Ireland) region for this project.
   - ![VPC Dashboard](screenshots/VPC%20dashboard.png)
 
 - [x] Creation of subnets
-In this project, we will create two subnets:
 
   - Public Subnet:
     - CIDR Block: 10.0.1.0/28
@@ -52,7 +51,7 @@ In this project, we will create two subnets:
       - ![Public Subnet](screenshots/Public%20Subnet.png)
 
   - Private Subnet:
-    - CIDR Block:
+    - CIDR Block: 10.0.2.0/28
     - Availability Zone: eu-west-1b
     - Route Table: Private Route Table
     - **Screenshot:**
@@ -61,13 +60,12 @@ In this project, we will create two subnets:
 
 - [x] Internet Gateway
 Next, we will create an Internet Gateway and attach it to the VPC in order to allow the VPC to connect to the Internet.
-After creating the Internet Gateway, we will attach it to the VPC.
 - **Screenshot:**
 
   - ![Internet Gateway](screenshots/Internet%20Gateway.png)
 
 - [x] Route Tables
-We will create two route tables: one for the public subnet and another for the private subnet.
+We will create two route tables: one for the public subnet and another for the private subnet, and associate them accordingly with the proper subnets.
 
   - Public Route Table:
     - **Screenshot:**
