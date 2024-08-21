@@ -119,6 +119,7 @@ The IAM role for the EC2 instance will have the following permissions:
 		  }
 	  ]
   }
+  ```
 
 - **Screenshot:**
 
