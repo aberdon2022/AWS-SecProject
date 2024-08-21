@@ -97,11 +97,30 @@ We will define two IAM roles: one for access the EC2 instance with SSM and anoth
 
 The IAM role for the EC2 instance will have the following permissions:
 
-  - AmazonSSMFullAccess (to allow access to the instance with SSM)
+  - AmazonSSMManagedInstanceCore (to allow access to the EC2 instance with SSM)
   - AmazonS3FullAccess (to allow access to the S3 bucket)
-  - CloudWatchFullAccess (to allow access to CloudWatch)
+  - Custom S3 policy to allow the EC2 instance to upload, download and list objects in the bucket
 
-  - **Screenshot:**
+  ```json
+  {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+			  "Effect": "Allow",
+			  "Action": [
+				  "s3:PutObject",
+				  "s3:GetObject",
+				  "s3:ListBucket"
+			  ],
+			  "Resource": [
+				  "arn:aws:s3:::juiceshop-logs",
+				  "arn:aws:s3::::juiceshop-logs/*"
+			  ]
+		  }
+	  ]
+  }
+
+- **Screenshot:**
 
   ![IAM Role](screenshots/IAM%20Role.png)
 
