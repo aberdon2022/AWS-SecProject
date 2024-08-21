@@ -62,7 +62,7 @@ We will be using the eu-west-1 (Ireland) region for this project.
 Next, we will create an Internet Gateway and attach it to the VPC in order to allow the VPC to connect to the Internet.
 - **Screenshot:**
 
-  - ![Internet Gateway](screenshots/Internet%20Gateway.png)
+  - ![Internet Gateway](screenshots/Internet%20Gateway%20attached.png)
 
 - [x] Route Tables\
 We will create two route tables: one for the public subnet and another for the private subnet, and associate them accordingly with the proper subnets.
@@ -75,5 +75,7 @@ We will create two route tables: one for the public subnet and another for the p
   - Private Route Table:
     - **Screenshot:**
     
-    ![Private Route Table](screenshots/Private%20Route%20Table.png)
+    ![Private Route Table](screenshots/Private%20Route%20Table.png)\
+
+  As you can see, the public route table has a route to the Internet Gateway, while the private route table doesn't.
   
