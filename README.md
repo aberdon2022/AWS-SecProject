@@ -79,3 +79,25 @@ We will create two route tables: one for the public subnet and another for the p
 
   As you can see, the public route table has a route to the Internet Gateway, while the private route table doesn't.
   
+- [x] EC2 Instances\
+Now we will launch an EC2 instance where we will install Juice Shop, an intentionally vulnerable web application, we will also setup a security group to allow access to the instance and a key pair to connect to it.
+
+  - **Screenshot:**
+
+  ![EC2 Instances](screenshots/EC2%20config.png)
+
+- [x] Security Groups\
+
+  - **Screenshot:**
+
+  ![Security Groups](screenshots/Security%20Groups.png)
+
+- [x] IAM Roles\
+We will define two IAM roles: one for access the EC2 instance with SSM and another for storing the logs in an S3 bucket and monitoring the instance with CloudWatch.
+
+  - **Screenshot:**
+
+  ![IAM Roles](screenshots/SSM%20Role.png)
+
+  ![IAM Roles](screenshots/CloudWatch%20Role.png)
+
