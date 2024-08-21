@@ -75,7 +75,7 @@ We will create two route tables: one for the public subnet and another for the p
   - Private Route Table:
     - **Screenshot:**
     
-    ![Private Route Table](screenshots/Private%20Route%20Table.png)\
+    ![Private Route Table](screenshots/Private%20Route%20Table.png)
 
   As you can see, the public route table has a route to the Internet Gateway, while the private route table doesn't.
   
