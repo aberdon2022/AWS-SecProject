@@ -9,7 +9,7 @@ resource "aws_vpc" "vpc" {
 resource "aws_subnet" "public_subnet" {
   vpc_id     = aws_vpc.vpc.id
   cidr_block = var.public_subnet_cidr
-  map_public_ip_on_launch = true
+  map_public_ip_on_launch = false
   availability_zone = "eu-west-3a"
 
   tags = {
@@ -41,8 +41,10 @@ resource "aws_vpc_endpoint" "s3_endpoint" {
 
 resource "aws_security_group" "hpot_sg" {
   vpc_id = aws_vpc.vpc.id
+  description = "Allow traffic to the honeypot"
 
   ingress {
+    description = "Allow SSH traffic from anywhere"
     from_port = 22
     to_port = 22
     protocol = "tcp"
@@ -51,6 +53,7 @@ resource "aws_security_group" "hpot_sg" {
   }
 
   ingress {
+    description = "Allow Telnet traffic from anywhere"
     from_port = 23
     to_port = 23
     protocol = "tcp"
@@ -59,6 +62,7 @@ resource "aws_security_group" "hpot_sg" {
   }
 
   egress {
+    description = "Allow all traffic to anywhere"
     from_port = 0
     to_port = 0
     protocol = "-1"
