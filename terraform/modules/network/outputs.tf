@@ -13,3 +13,7 @@ output "private_subnet_id" {
 output "hpot_sg_id" {
   value = aws_security_group.hpot_sg.id
 }
+
+output "s3_endpoint_id" {
+  value = aws_vpc_endpoint.s3_endpoint.id
+}

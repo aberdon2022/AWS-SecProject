@@ -8,15 +8,11 @@ resource "aws_instance" "cowrie" {
   user_data = <<-EOF
               #!/bin/bash
               sudo apt-get update -y
-              sudo apt-get install git python3-venv libssl-dev libffi-dev build-essential libpython3-dev python3-minimal authbind -y
-              sudo adduser --disabled-password cowrie
-              sudo su - cowrie
-              git clone https://github.com/cowrie/cowrie.git
-              cd cowrie
-              python3 -m venv cowrie-env
-              source cowrie-env/bin/activate
-              python3 -m pip install --upgrade pip
-              python3 -m pip install --upgrade -r requirements.txt
+              sudo apt-get install awscli -y
+              
+              aws configure set aws_access_key_id ${var.aws_access_key}
+              aws configure set aws_secret_access_key ${var.aws_secret_key}
+              aws configure set default.region ${var.region}
               EOF
   tags = {
     Name = "Cowrie"

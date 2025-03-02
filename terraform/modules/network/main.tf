@@ -28,6 +28,17 @@ resource "aws_subnet" "private_subnet" {
   
 }
 
+resource "aws_vpc_endpoint" "s3_endpoint" {
+  vpc_id = aws_vpc.vpc.id
+  service_name = "com.amazonaws.${var.region}.s3"
+  route_table_ids = [aws_route_table.public_route_table.id]
+  vpc_endpoint_type = "Gateway"
+
+  tags = {
+    Name = "S3 Endpoint"
+  }
+}
+
 resource "aws_security_group" "hpot_sg" {
   vpc_id = aws_vpc.vpc.id
 

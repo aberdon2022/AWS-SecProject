@@ -1,2 +1,5 @@
-.\terraform\terraform.tfvars
-.terraform/
+.terraform
+terraform.tfstate.backup
+tfplan
+.terraform.lock.hcl
+terraform.tfvars
