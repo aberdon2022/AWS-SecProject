@@ -9,7 +9,7 @@ resource "aws_vpc" "vpc" {
 resource "aws_subnet" "public_subnet" {
   vpc_id     = aws_vpc.vpc.id
   cidr_block = var.public_subnet_cidr
-  map_public_ip_on_launch = false
+  map_public_ip_on_launch = true
   availability_zone = "eu-west-3a"
 
   tags = {
@@ -39,21 +39,28 @@ resource "aws_vpc_endpoint" "s3_endpoint" {
   }
 }
 
-resource "aws_security_group" "hpot_sg" {
+resource "aws_security_group" "opencanary_sg" {
   vpc_id = aws_vpc.vpc.id
-  description = "Allow traffic to the honeypot"
+  description = "Allow traffic to the OpenCanary honeypot"
 
   ingress {
-    description = "Allow SSH traffic from anywhere"
+    description = "SSH"
     from_port = 22
     to_port = 22
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
-
   }
 
   ingress {
-    description = "Allow Telnet traffic from anywhere"
+    description = "HTTPS"
+    from_port = 443
+    to_port = 443
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "Telnet"
     from_port = 23
     to_port = 23
     protocol = "tcp"
@@ -61,16 +68,70 @@ resource "aws_security_group" "hpot_sg" {
 
   }
 
-  egress {
-    description = "Allow all traffic to anywhere"
-    from_port = 0
-    to_port = 0
-    protocol = "-1"
+  ingress {
+    description = "HTTP"
+    from_port = 80
+    to_port = 80
+    protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  ingress {
+    description = "Ftp"
+    from_port = 21
+    to_port = 21
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "MySQL"
+    from_port = 3306
+    to_port = 3306
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "RDP"
+    from_port = 3389
+    to_port = 3389
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "Microsoft SQL Server"
+    from_port = 1433
+    to_port = 1433
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "VNC"
+    from_port = 5900
+    to_port = 5900
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port = 0
+    to_port = 0
+    protocol = "-1"  # Permite todo el tráfico de salida
+    prefix_list_ids = [aws_vpc_endpoint.s3_endpoint.prefix_list_id]  # Solo permite tráfico al endpoint de S3
+  }
+
+  egress {
+    from_port = 443
+    to_port = 443
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  
   tags = {
-    Name = "hpot_sg"
+    Name = "opencanary_sg"
   }
 }
 

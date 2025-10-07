@@ -15,11 +15,6 @@ variable "instance_type" {
   default     = "t2.micro"
 }
 
-variable "ami" {
-  description = "AMI"
-  type        = string
-}
-
 variable "vpc_cidr" {
   description = "CIDR block for the VPC"
   type        = string

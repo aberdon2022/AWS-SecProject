@@ -26,14 +26,16 @@ resource "aws_s3_bucket_policy" "logs_policy" {
       {
         Effect = "Allow"
         Principal = "*"
-        Action = "s3:*"
+        Action = ["s3:*"]
         Resource = [
-          "${aws_s3_bucket.logs.arn}",
-          "${aws_s3_bucket.logs.arn}/*"
+          aws_s3_bucket.logs.arn,
+          "${aws_s3_bucket.logs.arn}/*",
         ]
-      Condition = {
-        StringEquals = {"aws:sourceVpce" = var.vpc_endpoint_id}
-      }
+        Condition = {
+          StringEquals = {
+            "aws:sourceVpce" = var.vpc_endpoint_id
+          }
+        }
       }
     ]
   })

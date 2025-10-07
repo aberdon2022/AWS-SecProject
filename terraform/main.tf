@@ -20,15 +20,27 @@ module "s3" {
   vpc_endpoint_id = module.network.s3_endpoint_id
 }
 
+data "aws_ami" "hpot" {
+  most_recent = true
+  owners = ["self"]
+  filter {
+    name = "name"
+    values = ["honeypot-ami_*"]
+  }
+
+  filter {
+    name = "architecture"
+    values = ["x86_64"]
+  }
+}
+
 module "hpot" {
   source = "./modules/hpot"
-  ami = var.ami
+  ami = data.aws_ami.hpot.id
   instance_type = var.instance_type
   key_name = aws_key_pair.keyPair.key_name
   subnet_id = module.network.public_subnet_id
-  vpc_security_group_ids = [module.network.hpot_sg_id]
-  bucket_name = module.s3.bucket_name
-  aws_access_key = var.aws_access_key
-  aws_secret_key = var.aws_secret_key
+  vpc_security_group_ids = [module.network.opencanary_sg_id]
   region = var.region
+  logs_bucket_arn = module.s3.logs_bucket_arn
 }

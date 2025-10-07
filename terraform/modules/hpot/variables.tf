@@ -23,24 +23,12 @@ variable "vpc_security_group_ids" {
   type        = list(string)
 }
 
-variable "bucket_name" {
-  description = "Bucket Name"
-  type        = string
-}
-
-variable "aws_access_key" {
-  description = "AWS Access Key"
-  type        = string
-  sensitive = true
-}
-
-variable "aws_secret_key" {
-  description = "AWS Secret Key"
-  type        = string
-  sensitive = true
-}
-
 variable "region" {
   description = "AWS region"
+  type        = string
+}
+
+variable "logs_bucket_arn" {
+  description = "ARN S3 logs"
   type        = string
 }
