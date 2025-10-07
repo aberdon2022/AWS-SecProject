@@ -46,14 +46,19 @@ build {
       "sudo adduser --disabled-password --gecos \"\" opencanary",
       "sudo -u opencanary python3 -m venv /home/opencanary/.venv",
       "sudo -u opencanary /home/opencanary/.venv/bin/pip install opencanary",
-      "sudo mkdir /etc/opencanary",
-      "sudo cp /home/opencanary/.venv/lib/python3.10/site-packages/opencanary/data/settings.json /etc/opencanary/opencanary.conf",
+      "sudo mkdir /etc/opencanaryd",
+      "sudo cp /home/opencanary/.venv/lib/python3.10/site-packages/opencanary/data/settings.json /etc/opencanaryd/opencanary.conf",
+      "sudo systemctl disable --now ssh",
+      "sudo systemctl mask ssh",
+      "sudo sed -i 's/\"http.enabled\": false/\"http.enabled\": true/' /etc/opencanaryd/opencanary.conf",
+      "sudo sed -i 's/\"telnet.enabled\": false/\"telnet.enabled\": true/' /etc/opencanaryd/opencanary.conf",
+      "sudo sed -i 's/\"mssql.enabled\": false/\"mssql.enabled\": true/' /etc/opencanaryd/opencanary.conf",
+      "sudo sed -i 's/\"vnc.enabled\": false/\"vnc.enabled\": true/' /etc/opencanaryd/opencanary.conf",
+      "sudo sed -i 's/\"ssh.enabled\": false/\"ssh.enabled\": true/' /etc/opencanaryd/opencanary.conf",
+      "sudo sed -i 's/\"mysql.enabled\": false/\"mysql.enabled\": true/' /etc/opencanaryd/opencanary.conf",
+      "sudo sed -i 's/\"device.node_id\": \"opencanary-1\"/\"device.node_id\": \"app-aws-01\"/' /etc/opencanaryd/opencanary.conf",
       "sync"
     ]
-  }
-
-  post-processor "manifest" {
-    output = "manifest.json"
   }
 }
 

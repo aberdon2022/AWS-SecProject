@@ -3,12 +3,6 @@ variable "region" {
   type        = string
 }
 
-variable "sshKey" {
-  description = "SSH key to access the EC2 instances"
-  type        = string
-  sensitive = true
-}
-
 variable "instance_type" {
   description = "Instance type"
   type        = string
@@ -27,11 +21,6 @@ variable "public_subnet_cidr" {
   default     = "10.0.1.0/24"
 }
 
-variable "private_subnet_cidr" {
-  description = "CIDR block for the private subnet"
-  type        = string
-  default     = "10.0.2.0/24"
-}
 variable "aws_access_key" {
   description = "AWS Access Key"
   type        = string

@@ -8,11 +8,6 @@ variable "instance_type" {
   type        = string
 }
 
-variable "key_name" {
-  description = "SSH Key Name"
-  type        = string
-}
-
 variable "subnet_id" {
   description = "Subnet ID"
   type        = string

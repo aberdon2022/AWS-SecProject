@@ -3,11 +3,7 @@ output "vpc_id" {
 }
 
 output "public_subnet_id" {
-  value = aws_subnet.public_subnet.id
-}
-
-output "private_subnet_id" {
-  value = aws_subnet.private_subnet.id
+  value = aws_subnet.public.id
 }
 
 output "opencanary_sg_id" {
@@ -15,5 +11,5 @@ output "opencanary_sg_id" {
 }
 
 output "s3_endpoint_id" {
-  value = aws_vpc_endpoint.s3_endpoint.id
+  value = aws_vpc_endpoint.s3_ep.id
 }

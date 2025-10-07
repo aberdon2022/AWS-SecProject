@@ -1,7 +1,6 @@
 resource "aws_instance" "opencanary" {
   ami = var.ami
   instance_type = var.instance_type
-  key_name = var.key_name
   subnet_id = var.subnet_id
   vpc_security_group_ids = var.vpc_security_group_ids
   iam_instance_profile = aws_iam_instance_profile.hpot_instance_profile.name
@@ -20,6 +19,18 @@ resource "aws_instance" "opencanary" {
     http_put_response_hop_limit = 1
   }
 
+  user_data = <<-EOF
+              #!/bin/bash
+              cat << 'Script' > /home/opencanary/logs.sh
+              #!/bin/bash
+              aws s3 cp /var/tmp/opencanary.log s3://hpot-logs-s3/opencanary.log
+              Script
+
+              chmod +x /home/opencanary/logs.sh
+              echo "0 * * * * /home/opencanary/logs.sh" | crontab -u opencanary -
+
+              sudo /home/opencanary/.venv/bin/opencanaryd --start --uid=opencanary --gid=opencanary
+              EOF
   tags = {
     Name = "opencanary"
   }
